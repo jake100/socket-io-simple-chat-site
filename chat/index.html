@@ -52,7 +52,7 @@
 			return false;
         });
         socket.on('message', function(msg){
-			if(msg.length > 144)return;
+			if(msg.length > 420)return;
 			var checkBox = document.getElementById("checkBox");
 			var isGreen = checkBox.checked;
 			console.log(isGreen);
