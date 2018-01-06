@@ -8,11 +8,19 @@
 			body { font: 13px Helvetica, Arial; }
 			form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
 			form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; border-radius: 12px;}
-			form button { width: 9%; background: rgb(222, 25, 25); border: none; padding: 10px; border: 2px solid #999999;}
-			#message { list-style-type: none; margin: 0; padding: 0; }
-			#message li { padding: 5px 10px; }
+			form button { width: 6%; background: rgb(222, 25, 25); border: none; padding: 10px; border: 2px solid #999999;}
+			#message { list-style-type: none; margin: 0; padding: 0; max-height: 100px}
+			#message li { padding: 5px 10px;}
 			#message li:nth-child(odd) { background: #eee; }
-			#message { margin-bottom: 40px }
+			#message { margin-bottom: 40;}
+			#message { min-height: 10px;}
+			#message { height: 10px;}
+			#message { max-height: 100px;}
+  
+			#message {float: left; margin: 5px 0px;max-width: 60%;}
+			#checkBox{width: 1%;}
+			
+			
 		</style>
    </head>
    <script src = "/socket.io/socket.io.js"></script>
@@ -29,11 +37,14 @@
 		});
    </script>
    <body>
+   <div id="box">
       <ul id="message"></ul>
-	  <input id="checkBox" type="checkbox"  html="make green">
-	  <label for="checkBox">green</label>
-      <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
+	</div>
+		
+
+    <form action="" >
+		<input id="checkBox" type="checkbox"  html="make green">
+		<input id="m" autocomplete="off" /><button>Send</button>
     </form>
 	  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 	  <script>
