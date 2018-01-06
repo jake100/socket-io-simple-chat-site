@@ -30,22 +30,29 @@
    </script>
    <body>
       <ul id="message"></ul>
-	  <input id="checkBox" type="checkbox">
+	  <input id="checkBox" type="checkbox"  html="make green">
+	  <label for="checkBox">green</label>
       <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form>
 	  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 	  <script>
+	  		var checkBox = document.getElementById("checkBox");
+			var isGreen = checkBox.checked;
 
-
+		socket.emit('getColor', isGreen);
       $(function () {
         var socket = io();
         $('form').submit(function(){
-          socket.emit('message', $('#m').val());
-          $('#m').val('');
-          return false;
+			var checkBox = document.getElementById("checkBox");
+			var isGreen = checkBox.checked;
+			socket.emit('message', $('#m').val());
+			socket.emit('getColor', isGreen);
+			$('#m').val('');
+			return false;
         });
         socket.on('message', function(msg){
+			if(msg.length > 144)return;
 			var checkBox = document.getElementById("checkBox");
 			var isGreen = checkBox.checked;
 			console.log(isGreen);
@@ -53,6 +60,10 @@
 			
 			$('#message').append(list.text(msg));
 			window.scrollTo(0, document.body.scrollHeight);
+			if(isGreen)$( "li" ).last().css("color", "green" );
+        });
+		    socket.on('getColor', function(isGreen){
+			var list = $('<li>');
 			if(isGreen)$( "li" ).last().css("color", "green" );
         });
       });

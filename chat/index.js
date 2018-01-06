@@ -10,11 +10,13 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
   socket.on('message', function(msg){
+	if(msg.length > 144)return;	  
     io.emit('message', msg);
   });
-      socket.on('makeGreen', function(isGreen){
-		io.emit('makeGreen', isGreen);
+      socket.on('getColor', function(isGreen){
+		io.emit('getColor', isGreen);
 	});
+	
 });
 
 
