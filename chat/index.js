@@ -10,7 +10,7 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
   socket.on('message', function(msg){
-	if(msg.length > 14)return;	  
+	if(msg.length > 140)return;	  
     io.emit('message', msg);
   });
       socket.on('getColor', function(isGreen){
